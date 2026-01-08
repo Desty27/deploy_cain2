@@ -1,0 +1,6 @@
+match_id,season,date,end_date,series_name,venue,team_a,team_b,toss_winner,toss_decision,winner
+1001,2026,2026-01-05,2026-01-05,Test Series: India vs Australia,Narendra Modi Stadium,India,Australia,India,bat,India
+1002,2026,2026-01-04,2026-01-04,One-Off: England vs New Zealand,Lords,England,New Zealand,New Zealand,field,England
+1003,2026,2026-01-03,2026-01-03,Tri-Series: Pakistan vs South Africa,Gaddafi Stadium,Pakistan,South Africa,South Africa,bat,South Africa
+1004,2026,2026-01-06,2026-01-06,ODI: Australia vs Sri Lanka,MCG,Australia,Sri Lanka,Australia,bat,Australia
+1005,2026,2026-01-07,2026-01-07,Series: West Indies vs Bangladesh,Queen's Park Oval,West Indies,Bangladesh,Bangladesh,field,West Indies

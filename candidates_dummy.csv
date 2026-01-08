@@ -1,0 +1,17 @@
+player_id,name,role,league_level,matches,batting_sr,batting_avg,bowling_eco,bowling_avg,fielding_eff,recent_form,region
+C001,Virat Kohli,Batter,1,250,135,57,,,0.95,0.92,North
+C002,Steve Smith,Batter,1,220,128,55,,,0.94,0.9,South
+C003,Joe Root,Batter,1,210,124,53,,,0.93,0.89,East
+C004,Trent Boult,Bowler,1,190,,,5.0,24,0.9,0.85,West
+C005,Babar Azam,Batter,1,180,130,54,,,0.92,0.9,North
+C006,Quinton de Kock,Wicketkeeper,2,170,125,49,,,0.91,0.86,South
+C007,David Warner,Batter,2,200,132,48,,,0.9,0.87,West
+C008,Kusal Mendis,Batter,2,140,122,44,,,0.88,0.82,East
+C009,Shai Hope,Batter,2,150,118,45,,,0.89,0.84,West
+C010,Mushfiqur Rahim,Wicketkeeper,2,190,116,46,,,0.9,0.85,South
+C011,Rohit Sharma,Batter,1,240,138,52,,,0.93,0.9,North
+C012,Pat Cummins,Bowler,1,160,,,4.9,23,0.92,0.88,West
+C013,Mitchell Starc,Bowler,1,175,,,5.1,25,0.91,0.86,South
+C014,Jasprit Bumrah,Bowler,1,150,,,4.7,22,0.93,0.9,North
+C015,Shakib Al Hasan,Allrounder,1,210,115,41,5.8,27,0.9,0.88,East
+C016,Kyle Mayers,Allrounder,2,130,110,38,6.2,30,0.88,0.82,West

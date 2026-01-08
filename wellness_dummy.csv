@@ -1,0 +1,17 @@
+player_id,name,team,role,acute_load,chronic_load,acute_chronic_ratio,wellness_score,soreness,sleep_hours,injury_history,recovery_index,days_since_last_match,travel_hours,bowling_overs_last_7d,batting_balls_last_7d,sprint_sessions_last_7d
+100,Virat Kohli,India,Batter,210,190,1.11,8.5,2,7.5,0,0.9,2,2,0,180,6
+101,Steve Smith,Australia,Batter,200,195,1.03,8.2,3,7.2,0,0.88,3,4,0,165,6
+102,Joe Root,England,Batter,195,185,1.05,8.4,2,7.8,0,0.92,2,3,0,170,5
+103,Trent Boult,New Zealand,Bowler,260,210,1.24,7.6,4,7.0,1,0.85,4,10,28,60,7
+104,Babar Azam,Pakistan,Batter,205,195,1.05,8.3,2,7.6,0,0.9,2,3,0,175,6
+105,Quinton de Kock,South Africa,Wicketkeeper,215,200,1.07,7.9,3,7.3,0,0.87,3,5,0,190,6
+106,David Warner,Australia,Batter,220,205,1.07,8.0,3,7.1,0,0.86,3,6,0,185,7
+107,Kusal Mendis,Sri Lanka,Batter,210,200,1.05,7.8,3,7.0,0,0.85,4,6,0,180,6
+108,Shai Hope,West Indies,Batter,200,190,1.05,8.1,2,7.4,0,0.89,2,4,0,170,6
+109,Mushfiqur Rahim,Bangladesh,Wicketkeeper,205,195,1.05,7.7,3,7.2,1,0.86,3,5,0,175,6
+110,Rohit Sharma,India,Batter,215,205,1.05,8.0,2,7.5,0,0.88,2,3,0,180,6
+111,Pat Cummins,Australia,Bowler,270,230,1.17,7.2,5,6.8,2,0.8,5,12,30,50,8
+112,Mitchell Starc,Australia,Bowler,265,225,1.18,7.3,4,6.9,2,0.82,4,11,32,55,8
+113,Jasprit Bumrah,India,Bowler,275,235,1.17,7.4,4,6.9,2,0.82,4,12,34,50,8
+114,Shakib Al Hasan,Bangladesh,Allrounder,240,210,1.14,7.5,4,7.1,2,0.84,4,9,20,90,7
+115,Kyle Mayers,West Indies,Allrounder,235,205,1.15,7.6,3,7.0,1,0.85,3,8,18,95,7
