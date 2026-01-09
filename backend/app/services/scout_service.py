@@ -3,7 +3,7 @@ from __future__ import annotations
 import random
 import sys
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, List
 
 import numpy as np
 import pandas as pd
@@ -143,6 +143,32 @@ def _local_rank_candidates(df: pd.DataFrame, protected: str = "region", shortlis
     return ranked, audits
 
 
+def _coerce_candidates(df: pd.DataFrame) -> pd.DataFrame:
+    """Normalize candidate fields and coerce numerics to avoid float conversion errors."""
+    work = df.copy()
+    work.replace(r"^\s*$", np.nan, regex=True, inplace=True)
+    num_cols = [
+        "matches",
+        "batting_sr",
+        "batting_avg",
+        "bowling_eco",
+        "bowling_avg",
+        "fielding_eff",
+        "recent_form",
+        "league_level",
+    ]
+    for col in num_cols:
+        if col in work.columns:
+            work[col] = pd.to_numeric(work[col], errors="coerce")
+    work[num_cols] = work[num_cols].fillna(0)
+    if "league_level" in work.columns:
+        work["league_level"] = work["league_level"].astype(int)
+    # Standardize role casing
+    if "role" in work.columns:
+        work["role"] = work["role"].astype(str).str.strip().str.lower()
+    return work
+
+
 def _build_response(
     input_df: pd.DataFrame,
     ranked_df: pd.DataFrame,
@@ -201,8 +227,11 @@ def _ensure_available() -> None:
 
 def load_demo_candidates() -> pd.DataFrame:
     fb_data = fb_get("datasets/candidates")
-    if fb_data:
-        return pd.DataFrame(fb_data)
+    if isinstance(fb_data, dict):
+        ordered_rows: List[Dict[str, Any]] = [fb_data[key] for key in sorted(fb_data.keys())]
+        return _coerce_candidates(pd.DataFrame(ordered_rows))
+    if isinstance(fb_data, list):
+        return _coerce_candidates(pd.DataFrame(fb_data))
 
     demo_path = Path("global_scout/data/demo_players.csv")
     if demo_path.exists():
@@ -230,7 +259,7 @@ def load_demo_candidates() -> pd.DataFrame:
                 "region": rng.choice(regions),
             }
         )
-    return pd.DataFrame(rows)
+    return _coerce_candidates(pd.DataFrame(rows))
 
 
 def rank_candidates(
@@ -238,14 +267,15 @@ def rank_candidates(
     protected: str = "region",
     shortlist_k: int = 10,
 ) -> Dict[str, Any]:
-    input_df = df.copy()
+    input_df = _coerce_candidates(df)
+    working_df = input_df
     if score_candidates is not None and mitigate_and_rank is not None:
-        scored = score_candidates(df)  # type: ignore[misc]
+        scored = score_candidates(working_df)  # type: ignore[misc]
         ranked_df, audits = mitigate_and_rank(scored, protected=protected, shortlist_k=shortlist_k)  # type: ignore[misc]
         ranked_df = ranked_df if isinstance(ranked_df, pd.DataFrame) else pd.DataFrame(ranked_df)
         return _build_response(input_df, ranked_df, audits, protected, shortlist_k)
 
-    ranked_df, audits = _local_rank_candidates(df=input_df, protected=protected, shortlist_k=shortlist_k)
+    ranked_df, audits = _local_rank_candidates(df=working_df, protected=protected, shortlist_k=shortlist_k)
     return _build_response(input_df, ranked_df, audits, protected, shortlist_k)
 
 
