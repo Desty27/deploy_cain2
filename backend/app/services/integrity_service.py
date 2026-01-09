@@ -55,7 +55,7 @@ def _compute_appeal_metrics(
         other_mix_rows["wicket_type"].astype(str).str.replace("_", " ", regex=False).str.title().replace({"": "Unspecified Appeal"})
     )
     other_mix = (
-        other_mix_rows["wicket_label"].value_counts().reset_index().rename(columns={"index": "label", "wicket_label": "count"}).to_dict("records")
+        other_mix_rows["wicket_label"].value_counts().reset_index(name="count").rename(columns={"index": "label"}).to_dict("records")
         if not other_mix_rows.empty
         else []
     )

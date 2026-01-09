@@ -9,14 +9,19 @@ import requests
 
 # Hardcoded Realtime Database base URL (free tier)
 FIREBASE_BASE = "https://cain-a08c1-default-rtdb.asia-southeast1.firebasedatabase.app"
+# Auth is optional; public DBs don't need it. Set to True and provide a token to enable.
+FIREBASE_USE_AUTH = False
+# If FIREBASE_USE_AUTH is True, this token is used; leave empty to fall back to env vars.
+FIREBASE_AUTH_TOKEN = ""
 
 
 def _make_url(path: str) -> str:
     cleaned = path.strip("/")
     base = f"{FIREBASE_BASE}/{cleaned}.json"
-    auth = os.getenv("FIREBASE_DATABASE_SECRET") or os.getenv("FIREBASE_AUTH")
-    if auth:
-        return f"{base}?auth={auth}"
+    if FIREBASE_USE_AUTH:
+        auth = FIREBASE_AUTH_TOKEN or os.getenv("FIREBASE_DATABASE_SECRET") or os.getenv("FIREBASE_AUTH")
+        if auth:
+            return f"{base}?auth={auth}"
     return base
 
 
