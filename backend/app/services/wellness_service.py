@@ -7,6 +7,8 @@ import sys
 import numpy as np
 import pandas as pd
 
+from app.services.firebase_client import get as fb_get
+
 # Ensure repo root (contains global_scout/) is importable when running from backend/
 repo_root = Path(__file__).resolve().parents[3]
 if str(repo_root) not in sys.path:
@@ -19,7 +21,6 @@ try:
         summarize_risk,
         generate_coach_guidance,
     )
-    from app.services.firebase_client import get as fb_get
 except Exception:  # pragma: no cover - optional dependency
     load_wellness_data = None  # type: ignore
     compute_injury_risk = None  # type: ignore
